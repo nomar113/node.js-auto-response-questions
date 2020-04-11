@@ -1,7 +1,7 @@
 const { Builder, By, Key, until } = require('selenium-webdriver');
-const credentials = require('./credentials.json')
+const credentials = require('./credentials.json');
 
-(async function example () {
+(async function example() {
 	let driver = await new Builder().forBrowser('firefox').build();
 	let URL_UNICARIOCA = 'http://ava.unicarioca.edu.br';
 	let URL_EXERCICIOS = 'https://ava.unicarioca.edu.br/graduacao/mod/quiz/view.php?id=';

@@ -1,4 +1,4 @@
-const { Builder, By, Key, until, Actions, } = require('selenium-webdriver');
+const { Builder, By, Key, until } = require('selenium-webdriver');
 const credentials = require('./credentials.json');
 
 (async function example() {
@@ -9,6 +9,7 @@ const credentials = require('./credentials.json');
 	let matricula = credentials.matricula;
 	let senha = credentials.senha;
 	let respostas = [];
+	const stringRespostaCorreta = 'A resposta correta é: ';
 	try {
 		await driver.get(URL_UNICARIOCA);
 		await driver.findElement(By.name('username')).sendKeys(matricula, Key.TAB);
@@ -35,7 +36,27 @@ const credentials = require('./credentials.json');
 				// Enviar tudo e terminar
 				let buttons = await driver.findElements(By.css('button.btn.btn-secondary'));
 				buttons[1].click();
+				// Enviar tudo e terminar (modal, botão vermelho)
+				await driver.sleep(10000);
+				try {
+					let redButton = await driver.findElement(By.css('input.btn.btn-primary'));
+					console.log(redButton);
+					await driver.sleep(4000);
+					redButton.click();
+				} catch {
+					console.log('Não tem botão vermelho!');
+				}
 				// TO DO: pegar respostas certas 
+				let rightAnswers = await driver.findElements(By.css('div.rightanswer'));
+				for (let i = 0; i < rightAnswers.length; i++) {
+					let respostaHtml = await rightAnswers[i].getText();
+					console.log(respostaHtml);
+					let respostaFormatada = respostaHtml.slice(stringRespostaCorreta.length);
+					console.log(respostaFormatada);
+					respostas.push(respostaFormatada);
+				}
+				console.log('respostas: ')
+				console.log(respostas);
 				// TO DO: clicar em terminar revisão e remover o break
 				break;
 				nota = await driver.findElement(By.css('div#feedback > h3')).getText();

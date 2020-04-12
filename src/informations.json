@@ -1,0 +1,9 @@
+{
+  "urlAva": "http://ava.unicarioca.edu.br",
+  "urlAvaQuestion": "https://ava.unicarioca.edu.br/graduacao/mod/quiz/view.php?id=",
+  "title": "UniCarioca Graduação",
+  "grade5": "Nota mais alta: 5,00 / 5,00.",
+  "grade10": "Nota mais alta: 10,00 / 10,00.",
+  "answerRight": "A resposta correta é: ",
+  "finishRevision": "Terminar revisão"
+}
